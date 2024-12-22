@@ -22,7 +22,8 @@ apt-get install -y --no-install-recommends \
     llvm-19 \
     libclang-rt-19-dev \
     libc++-19-dev \
-    libc++abi-19-dev
+    libc++abi-19-dev \
+    clang-tools-19
 ln -s /usr/bin/clang-19 /usr/bin/clang
 ln -s /usr/bin/clang++-19 /usr/bin/clang++
 
@@ -31,3 +32,4 @@ cd
 wget https://github.com/Kitware/CMake/releases/download/v3.31.3/cmake-3.31.3-linux-x86_64.tar.gz
 tar -xf cmake-3.31.3-linux-x86_64.tar.gz
 ln -s $(pwd)/cmake-3.31.3-linux-x86_64/bin/cmake /usr/bin/cmake
+ln -s $(pwd)/cmake-3.31.3-linux-x86_64/bin/ctest /usr/bin/ctest
