@@ -16,20 +16,17 @@ on:
 
 
 jobs:
-  # clang-19:
-  #   runs-on: ubuntu-latest
-  #   container: ubuntu:24.04
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - run: bash tools/ubuntu-install.sh
-  #     - run: python tools/ci.py --toolset=clang
+  clang-19:
+    runs-on: ubuntu-latest
+    container: ubuntu:24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash tools/ubuntu-install.sh
+      - run: python tools/ci.py --toolset=clang
   msvc:
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
-      - shell: cmd
-        run: |
-          "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsall.bat" x64 && cd quicktest && mkdir __build && cd __build && cmake ..
       - run: choco install ninja
       - shell: cmd
         run: | 
