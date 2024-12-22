@@ -27,4 +27,5 @@ jobs:
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
+      - run: choco install ninja
       - run: python tools/ci.py --toolset=msvc
