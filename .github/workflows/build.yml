@@ -32,4 +32,4 @@ jobs:
           mkdir __build && cd __build && cmake ..
       - run: choco install ninja
       - run: |
-        "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsall.bat" && python tools/ci.py --toolset=msvc
+          "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsall.bat" && python tools/ci.py --toolset=msvc
