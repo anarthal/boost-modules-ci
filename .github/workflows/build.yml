@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2019-2024 Ruben Perez Hidalgo (rubenperez038 at gmail dot com)
+# Copyright (c) 2024 Ruben Perez Hidalgo (rubenperez038 at gmail dot com)
 #
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -21,16 +21,5 @@ jobs:
     container: ubuntu:24.04
     steps:
       - uses: actions/checkout@v4
-      - run: apt-get update && apt-get install -y --no-install-recommends \
-                ca-certificates \
-                clang-19 \
-                llvm-19 \
-                libclang-rt-19-dev \
-                libc++-19-dev \
-                libc++abi-19-dev \
-                git \
-                ninja-build \
-                cmake \
-                python3 \
-                python-is-python3
+      - run: bash tools/ubuntu-install.sh
       - run: python tools/ci.py
