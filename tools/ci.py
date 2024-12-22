@@ -4,9 +4,10 @@ import subprocess
 from typing import List
 import os
 from pathlib import Path
+import argparse
 
 
-BOOST_ROOT = Path(os.path.expanduser('~')).joinpath('boost-root')
+BOOST_ROOT = Path(os.path.expanduser('~')).joinpath('boost-modules-root')
 
 
 def run(args: List[str]) -> None:
@@ -20,6 +21,19 @@ def mkdir_and_cd(path: Path) -> None:
 
 
 def main():
+    # Create an argument parser
+    parser = argparse.ArgumentParser(description="Boost modules CI")
+    parser.add_argument(
+        '--toolset', 
+        choices=['clang', 'msvc'],
+        required=True,
+        help="The toolset to use to build the code"
+    )
+
+    # Parse the arguments
+    args = parser.parse_args()
+    toolset = args.toolset
+
     # Clone Boost
     run(['git', 'clone', '-b', 'develop', '--depth', '1', 'https://github.com/boostorg/boost.git', str(BOOST_ROOT)])
     os.chdir(str(BOOST_ROOT))
@@ -46,8 +60,10 @@ def main():
         '-DBUILD_TESTING=ON',
         '-DBOOST_CXX20_MODULE=ON',
         '-DCMAKE_EXPERIMENTAL_CXX_IMPORT_STD=0e5b6991-d74f-4b3d-a41c-cf096e0b2508',
+    ] + ([
         '-DCMAKE_CXX_FLAGS=-stdlib=libc++',
         '-DCMAKE_EXE_LINKER_FLAGS=-stdlib=libc++',
+    ] if toolset == 'clang' else []) + [
         '-DCMAKE_CXX_STANDARD=23',
         '-G',
         'Ninja',
