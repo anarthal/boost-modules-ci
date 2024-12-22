@@ -25,11 +25,11 @@ jobs:
       - run: python tools/ci.py --toolset=clang
   msvc:
     runs-on: windows-2022
+    shell: cmd
     steps:
       - uses: actions/checkout@v4
       - run: |
-          "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsall.bat" && ^
-          mkdir __build && cd __build && cmake ..
+          "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsall.bat" && mkdir __build && cd __build && cmake ..
       - run: choco install ninja
       - run: |
           "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsall.bat" && python tools/ci.py --toolset=msvc
