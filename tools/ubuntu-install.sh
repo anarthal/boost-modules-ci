@@ -23,6 +23,8 @@ apt-get install -y --no-install-recommends \
     libclang-rt-19-dev \
     libc++-19-dev \
     libc++abi-19-dev
+ln -s /usr/bin/clang-19 /usr/bin/clang
+ln -s /usr/bin/clang++-19 /usr/bin/clang++
 
 # Install CMake
 cd
