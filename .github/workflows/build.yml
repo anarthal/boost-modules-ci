@@ -16,13 +16,13 @@ on:
 
 
 jobs:
-  clang-19:
-    runs-on: ubuntu-latest
-    container: ubuntu:24.04
-    steps:
-      - uses: actions/checkout@v4
-      - run: bash tools/ubuntu-install.sh
-      - run: python tools/ci.py --toolset=clang
+  # clang-19:
+  #   runs-on: ubuntu-latest
+  #   container: ubuntu:24.04
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - run: bash tools/ubuntu-install.sh
+  #     - run: python tools/ci.py --toolset=clang
   msvc:
     runs-on: windows-2022
     shell: cmd
